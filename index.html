@@ -10,29 +10,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Cairo', sans-serif;
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Cairo', sans-serif; scroll-behavior: smooth; }
+        body { background-color: #0f172a; color: #f8fafc; }
         a { text-decoration: none; color: inherit; }
 
         /* شريط التنقل */
         header {
-            background-color: rgba(15, 23, 42, 0.9);
-            backdrop-filter: blur(10px);
-            padding: 20px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid #1e293b;
+            background-color: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px);
+            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #1e293b;
         }
         .logo { font-size: 22px; font-weight: bold; color: #38bdf8; }
         nav ul { display: flex; list-style: none; gap: 25px; }
@@ -41,26 +27,20 @@
 
         /* القسم الرئيسي */
         .hero {
-            padding: 100px 8%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
+            padding: 100px 8%; display: flex; flex-direction: column; align-items: center; text-align: center;
             background: radial-gradient(circle at top, #1e3a8a 0%, #0f172a 70%);
         }
         .hero h1 { font-size: 42px; margin-bottom: 15px; }
         .hero h1 span { color: #38bdf8; }
         .hero p { font-size: 18px; color: #94a3b8; max-width: 600px; margin-bottom: 30px; }
         .btn {
-            background-color: #38bdf8; color: #0f172a;
-            padding: 12px 30px; font-weight: bold; border-radius: 8px;
-            transition: all 0.3s ease; display: inline-block;
-            cursor: pointer; border: none;
+            background-color: #38bdf8; color: #0f172a; padding: 12px 30px; font-weight: bold; border-radius: 8px;
+            transition: all 0.3s ease; display: inline-block; cursor: pointer; border: none;
         }
         .btn:hover { background-color: #0ea5e9; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.2); }
 
-        /* العناوين العامة للرابط */
-        .section-title { font-size: 32px; margin-bottom: 50px; text-align: center; position: relative; }
+        /* العناوين العامة */
+        .section-title { font-size: 32px; margin-bottom: 40px; text-align: center; position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: #38bdf8; margin: 10px auto 0; border-radius: 2px; }
 
         /* قسم الخدمات */
@@ -75,39 +55,53 @@
         .service-card h3 { font-size: 22px; margin-bottom: 15px; }
         .service-card p { color: #94a3b8; font-size: 15px; line-height: 1.6; }
 
-        /* قسم تواصل معي الجديد */
-        .contact { padding: 80px 8%; background-color: #0b111e; }
-        .contact-container {
-            display: flex; flex-wrap: wrap; gap: 50px; max-width: 1100px; margin: 0 auto;
+        /* قسم معرض الأعمال الجديد */
+        .portfolio { padding: 80px 8%; background-color: #0f172a; }
+        .portfolio-filters { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .filter-btn {
+            background-color: #1e293b; color: #f8fafc; border: 1px solid #334155;
+            padding: 8px 20px; border-radius: 20px; cursor: pointer; transition: all 0.3s;
         }
+        .filter-btn.active, .filter-btn:hover { background-color: #38bdf8; color: #0f172a; border-color: #38bdf8; }
+        
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .project-card {
+            background-color: #1e293b; border-radius: 12px; overflow: hidden;
+            border: 1px solid #334155; transition: transform 0.3s;
+        }
+        .project-card:hover { transform: scale(1.03); }
+        .project-img {
+            height: 200px; background-color: #334155; display: flex;
+            align-items: center; justify-content: center; color: #94a3b8; font-size: 14px;
+        }
+        .project-info { padding: 20px; }
+        .project-info h3 { font-size: 20px; margin-bottom: 10px; }
+        .project-info p { color: #94a3b8; font-size: 14px; margin-bottom: 15px; }
+        .project-link { color: #38bdf8; font-weight: bold; display: inline-flex; align-items: center; gap: 5px; }
+
+        /* قسم تواصل معي */
+        .contact { padding: 80px 8%; background-color: #0b111e; }
+        .contact-container { display: flex; flex-wrap: wrap; gap: 50px; max-width: 1100px; margin: 0 auto; }
         .contact-info { flex: 1; min-width: 300px; }
         .contact-info h3 { font-size: 24px; margin-bottom: 15px; color: #38bdf8; }
         .contact-info p { color: #94a3b8; margin-bottom: 30px; line-height: 1.6; }
-        
-        /* روابط السوشيال ميديا السريعة */
         .social-links { display: flex; gap: 15px; }
         .social-icon {
-            width: 50px; height: 50px; background-color: #1e293b;
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 20px; color: #f8fafc; transition: all 0.3s ease; border: 1px solid #334155;
+            width: 50px; height: 50px; background-color: #1e293b; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 20px; transition: all 0.3s; border: 1px solid #334155;
         }
         .social-icon:hover { background-color: #38bdf8; color: #0f172a; transform: translateY(-5px); }
 
-        /* تصميم استمارة التواصل */
         .contact-form { flex: 1.5; min-width: 300px; background-color: #1e293b; padding: 30px; border-radius: 12px; border: 1px solid #334155; }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #94a3b8; }
         .form-group input, .form-group textarea {
-            width: 100%; padding: 12px; background-color: #0f172a; border: 1px solid #334155;
-            border-radius: 6px; color: #f8fafc; font-size: 16px; outline: none; transition: border 0.3s;
+            width: 100%; padding: 12px; background-color: #0f172a; border: 1px solid #334155; border-radius: 6px; color: #f8fafc; outline: none;
         }
         .form-group input:focus, .form-group textarea:focus { border-color: #38bdf8; }
 
         @media (max-width: 768px) {
-            header { padding: 15px 5%; }
-            nav { display: none; }
-            .hero h1 { font-size: 32px; }
-            .contact-container { flex-direction: column; }
+            header { padding: 15px 5%; } nav { display: none; } .hero h1 { font-size: 32px; } .contact-container { flex-direction: column; }
         }
     </style>
 </head>
@@ -116,9 +110,10 @@
     <header>
         <div class="logo"><i class="fa-solid fa-code"></i> ريتو ديزاين</div>
         <nav>
-            <ul>https://wa.me/9647725823585
+            <ul>
                 <li><a href="#home">الرئيسية</a></li>
                 <li><a href="#services">خدماتي</a></li>
+                <li><a href="#portfolio">أعمالي</a></li>
                 <li><a href="#contact">تواصل معي</a></li>
             </ul>
         </nav>
@@ -151,16 +146,45 @@
         </div>
     </section>
 
+    <section class="portfolio" id="portfolio">
+        <h2 class="section-title">نماذج من أعمالي</h2>
+        
+        <div class="portfolio-filters">
+            <button class="filter-btn active">الكل</button>
+            <button class="filter-btn">مواقف ويب</button>
+            <button class="filter-btn">تطبيقات</button>
+            <button class="filter-btn">تصاميم</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-store fa-3x"></i></div>
+                <div class="project-info">
+                    <h3>متجر إلكتروني متكامل</h3>
+                    <p>موقع تجارة إلكترونية سريع يحتوي على نظام سلة مشتريات تفاعلي وحساب تلقائي للأسعار.</p>
+                    <a href="#" class="project-link">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-img"><i class="fa-solid fa-dumbbell fa-3x"></i></div>
+                <div class="project-info">
+                    <h3>تطبيق لياقة بدنية</h3>
+                    <p>تصميم واجهات UI/UX لتطبيق موبايل مخصص لمتابعة التمارين الرياضية وجداول التغذية.</p>
+                    <a href="#" class="project-link">معاينة المشروع <i class="fa-solid fa-arrow-left"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="contact" id="contact">
         <h2 class="section-title">تواصل معي</h2>
         <div class="contact-container">
-            
             <div class="contact-info">
                 <h3>دعنا نعمل معاً!</h3>
-                <p>هل لديك فكرة مشروع تريد تحويلها إلى حقيقة؟ لا تتردد في مراسلتي عبر الاستمارة أو من خلال حساباتي المباشرة أدناه وسأرد عليك في أقرب وقت.</p>
-                
+                <p>هل لديك فكرة مشروع تريد تحويلها إلى حقيقة؟ لا تتردد في مراسلتي وسأرد عليك في أقرب وقت.</p>
                 <div class="social-links">
-                    <a href="https://wa.me/#" target="_blank" class="social-icon" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" target="_blank" class="social-icon" title="واتساب"><i class="fa-brands fa-whatsapp"></i></a>
                     <a href="#" target="_blank" class="social-icon" title="لينكد إن"><i class="fa-brands fa-linkedin-in"></i></a>
                     <a href="#" target="_blank" class="social-icon" title="تليغرام"><i class="fa-brands fa-telegram"></i></a>
                 </div>
@@ -169,19 +193,18 @@
             <form class="contact-form" action="#" method="POST">
                 <div class="form-group">
                     <label for="name">الاسم الكريم</label>
-                    <input type="text" id="name" name="name" required placeholder="أدخل اسمك هنا">
+                    <input type="text" id="name" required placeholder="أدخل اسمك هنا">
                 </div>
                 <div class="form-group">
                     <label for="email">البريد الإلكتروني</label>
-                    <input type="email" id="email" name="email" required placeholder="name@example.com">
+                    <input type="email" id="email" required placeholder="name@example.com">
                 </div>
                 <div class="form-group">
                     <label for="message">تفاصيل مشروعك أو رسالتك</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
+                    <textarea id="message" rows="5" required placeholder="اكتب تفاصيل طلبك هنا..."></textarea>
                 </div>
                 <button type="submit" class="btn" style="width: 100%;">إرسال الرسالة <i class="fa-solid fa-paper-plane"></i></button>
             </form>
-
         </div>
     </section>
 
